@@ -4,7 +4,7 @@
 ####### Update:  2017/04/20                                       
 ####################################################################################
 
-scriptdir <- "/home/dannunzio/Documents/scripts/scripts_iom/"
+scriptdir <- "/home/dannunzio/Documents/scripts/scripts_iom/process/"
 setwd(scriptdir)
 
 ####################################################################################
