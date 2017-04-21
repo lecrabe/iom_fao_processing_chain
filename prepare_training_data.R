@@ -314,7 +314,7 @@ system(sprintf(paste0("rm ",outdir,"/","tmp_*.tif")))
 
  
 ################################################################################
-## Clump again the selected segments to get unique IDs including water & shadows
+## Clump again the selected segments to get unique real IDs 
 system(sprintf("oft-clump -i %s -o %s -um %s",
                sel_sg_train,
                paste0(outdir,"/","tmp_sel_seg_id.tif"),
