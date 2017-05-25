@@ -303,7 +303,7 @@ system(sprintf("gdal_translate -ot Byte -co COMPRESS=LZW %s %s",
 ## Mask with the no_change mask
 system(sprintf("gdal_calc.py -A %s -B %s -C %s --outfile=%s --calc=\"%s\"",
                sel_sg_train,
-               noch_msk,
+               full_nochg_mask,#noch_msk,
                slp_clip,
                paste0(outdir,"/","tmp_sl_sg_train_nochange.tif"),
                paste0("A*B*(C<",th_wat,")")

@@ -56,9 +56,9 @@ agb$subplot_id <- paste0(agb$plot_id,agb$subplot_code)
 head(agb)
 ####################################################################################
 ### Calculate AGB/ha, Basal area and Mean Slope per subplot
-df_agb <- tapply(agb$agb_ha,  agb[,c("subplot_id")],FUN = sum)
-df_bas <- tapply(agb$basal_ha,agb[,c("subplot_id")],FUN = sum)
-df_slp <- tapply(agb$slope,   agb[,c("subplot_id")],FUN = mean)
+(df_agb <- tapply(agb$agb_ha,  agb[,c("subplot_id")],FUN = sum))
+(df_bas <- tapply(agb$basal_ha,agb[,c("subplot_id")],FUN = sum))
+(df_slp <- tapply(agb$slope,   agb[,c("subplot_id")],FUN = mean))
 
 df <- data.frame(cbind(df_agb,df_bas,df_slp))
 
@@ -126,7 +126,7 @@ dbf1 <-  merge(dbf,my_legend_lc,by.x="class_lc",by.y="lc_code")
 dbf1 <- merge(dbf1,my_legend_change,by.x="class_change","chge_code")
 dbf1 <- arrange(dbf1,id)
 
-write.csv(dbf1,paste0(rootdir,"subplot_agb_basal_20170421.csv"),row.names = F)
+write.csv(dbf1,paste0(rootdir,"subplot_agb_basal_20170525.csv"),row.names = F)
 
 shp@data <- dbf1
 
@@ -185,8 +185,8 @@ system(sprintf("gdal_calc.py -A %s -B %s --co COMPRESS=LZW --type=UInt16 --outfi
                "(A*100)+B"
 ))
 
-agb_all_trans <- read.csv(paste0(field_dir,"agb_ha_1994.csv"))
-#agb_all_trans <- read.csv(paste0(field_dir,"agb_ha_2016.csv"))
+#agb_all_trans <- read.csv(paste0(field_dir,"agb_ha_1994.csv"))
+agb_all_trans <- read.csv(paste0(field_dir,"agb_ha_2016.csv"))
 
 agb_all_trans[is.na(agb_all_trans)] <- 0
 
@@ -203,7 +203,7 @@ df$agb <- c(unlist(agb_all_trans$X1),
                 unlist(agb_all_trans$X7),
                 unlist(agb_all_trans$X8),
                 unlist(agb_all_trans$X9))
-df$agbC <- df$agb*.47/1000
+df$agb_Tha <- df$agb/1000
 
 
 write.table(df,paste0(comb_dir,"reclass_agb.txt"),quote=FALSE, col.names=FALSE,row.names=FALSE)
@@ -223,11 +223,11 @@ system(sprintf("gdal_calc.py -A %s -B %s --co COMPRESS=LZW --outfile=%s --calc=\
 ))
 
 
-colfunc <- colorRampPalette(c("white", "darkgreen"))
+colfunc <- colorRampPalette(c("white", "brown"))
 
 pct <- data.frame(cbind(
-  c(0:ceiling(max(df$agbC)),255),
-  c(colfunc(ceiling(max(df$agbC))+1),"#000000")
+  c(0:ceiling(max(df$agb_Tha)),255),
+  c(colfunc(ceiling(max(df$agb_Tha))+1),"#000000")
 ))
 
 pct3 <- data.frame(cbind(pct$X1,col2rgb(pct$X2)[1,],col2rgb(pct$X2)[2,],col2rgb(pct$X2)[3,]))
@@ -243,11 +243,16 @@ system(sprintf("(echo %s) | oft-addpct.py %s %s",
 
 ################################################################################
 ## Compress
+# system(sprintf("gdal_translate -co COMPRESS=LZW %s %s",
+#                paste0(comb_dir,"tmp_reclass_pct_agb.tif"),
+#                paste0(comb_dir,"agb_tC-ha_1994.tif")
+# ))
+
 system(sprintf("gdal_translate -co COMPRESS=LZW %s %s",
                paste0(comb_dir,"tmp_reclass_pct_agb.tif"),
-               paste0(comb_dir,"agb_tC-ha_1994.tif")
+               paste0(comb_dir,"agb_tC-ha_2016.tif")
 ))
 
-system(sprintf("rm -r %s",
-               paste0(comb_dir,"tmp*.tif")))
+# system(sprintf("rm -r %s",
+#                paste0(comb_dir,"tmp*.tif")))
 

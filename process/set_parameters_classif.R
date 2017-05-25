@@ -40,6 +40,8 @@ data_mask <- paste0(outdir,"/",basename,"_non_zero_data.tif") # good data mask
 shd_msk   <- paste0(outdir,"/",basename,"_shadows.tif")   # shadow mask
 land_msk  <- paste0(outdir,"/",basename,"_land.tif")   # land mask
 
+full_nochg_mask <- paste0(comb_dir,"tile_aoi_bb_vhr_byte_no_change_mask_940316.tif")
+
 train_wat  <- paste0(outdir,"/",basename,"_train_wat.tif")    # clip of train over the tile with water mask merged
 
 sel_sg_train<- paste0(outdir,"/",basename,"_selsgtrain.tif")  # majority train class for each selected segment

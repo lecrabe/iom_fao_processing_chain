@@ -15,10 +15,10 @@ source(paste0(scriptdir,"load_packages.R"),echo=TRUE)
 ####################################################################################
 #######          CHANGE ACCORDINGLY TO PERIOD OF INTEREST
 ####################################################################################
-time1       <- 2003
-time2       <- 2016
+time1       <- 1994
+time2       <- 2003
 t1_bands <- c(1,2,3) # NIR, RED, GREEN for SPOT 2,3,5
-t2_bands <- c(4,1,2) # NIR, RED, GREEN for Spot 6 and 7
+t2_bands <- c(1,2,3) #c(4,1,2) # NIR, RED, GREEN for Spot 6 and 7
 
 ####################################################################################
 #######          SET PARAMETERS
@@ -30,30 +30,31 @@ source(paste0(scriptdir,"set_parameters_merge.R"),echo=TRUE)
 
 ################################################################################
 ## Run the change detection
-source(paste0(scriptdir,"change_detection_OTB.R"),echo=TRUE)
-
+# source(paste0(scriptdir,"change_detection_OTB.R"),echo=TRUE)
+# 
+# source(paste0(scriptdir,"combine_change_detection.R"),echo=TRUE)
 
 ################################################################################
 ## Run the classification for time 1
-outdir  <- paste0(tiledir,"/time1/")
-dir.create(outdir)
-im_input <- t1_input
-
-        source(paste0(scriptdir,"set_parameters_classif.R"),echo=TRUE)
-
-        source(paste0(scriptdir,"prepare_training_data.R"),echo=TRUE)
-        source(paste0(scriptdir,"supervised_classification.R"),echo=TRUE)
+# outdir  <- paste0(tiledir,"/time1/")
+# dir.create(outdir)
+# im_input <- t1_input
+# 
+#         source(paste0(scriptdir,"set_parameters_classif.R"),echo=TRUE)
+# 
+#         source(paste0(scriptdir,"prepare_training_data.R"),echo=TRUE)
+#         source(paste0(scriptdir,"supervised_classification.R"),echo=TRUE)
 
 ################################################################################
 ## Run the classification for time 2
-outdir  <- paste0(tiledir,"/time2/")
-dir.create(outdir)
-im_input <- t2_input
-
-        source(paste0(scriptdir,"set_parameters_classif.R"),echo=TRUE)
-
-        source(paste0(scriptdir,"prepare_training_data.R"),echo=TRUE)
-        source(paste0(scriptdir,"supervised_classification.R"),echo=TRUE)
+# outdir  <- paste0(tiledir,"/time2/")
+# dir.create(outdir)
+# im_input <- t2_input
+# 
+#         source(paste0(scriptdir,"set_parameters_classif.R"),echo=TRUE)
+# 
+#         source(paste0(scriptdir,"prepare_training_data.R"),echo=TRUE)
+#         source(paste0(scriptdir,"supervised_classification.R"),echo=TRUE)
 
 
 ################################################################################
@@ -67,7 +68,7 @@ im_input <- t2_input
 
 ################################################################################
 ## Call field data and inject into LCC map to generate statistics and biomass maps
-# source(paste0(scriptdir,"inject_field_data.R"),echo=TRUE)
+source(paste0(scriptdir,"inject_field_data.R"),echo=TRUE)
 
 
 

@@ -1,9 +1,10 @@
-# iom_fao_processing_chain
-Processing chain for VHR satellite imagery, IOM FAO project
+## Processing chain for change detection analysis in woodfuel resources around UMN settlements
+Latest update: 2017/05/25
+Processing chain for very high resolution satellite imagery, IOM FAO project
 
-Recommended citation: FAO & IOM 2017 TBDxxxxxxxxxxxxxxxxxxx
+Recommended citation: FAO & IOM 2017. Assessing demand and supply of wood fuel in and around displacement settings in Cox's Bazar, Bangladesh 
 
-# Tested with the following libraries
+### Tested with the following libraries
 
    Bash 4.3.46
    
