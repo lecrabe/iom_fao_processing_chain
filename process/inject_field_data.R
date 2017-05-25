@@ -245,12 +245,12 @@ system(sprintf("(echo %s) | oft-addpct.py %s %s",
 ## Compress
 # system(sprintf("gdal_translate -co COMPRESS=LZW %s %s",
 #                paste0(comb_dir,"tmp_reclass_pct_agb.tif"),
-#                paste0(comb_dir,"agb_tC-ha_1994.tif")
+#                paste0(comb_dir,"agb_tdm-ha_1994.tif")
 # ))
 
 system(sprintf("gdal_translate -co COMPRESS=LZW %s %s",
                paste0(comb_dir,"tmp_reclass_pct_agb.tif"),
-               paste0(comb_dir,"agb_tC-ha_2016.tif")
+               paste0(comb_dir,"agb_tdm-ha_2016.tif")
 ))
 
 # system(sprintf("rm -r %s",
